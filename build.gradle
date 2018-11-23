@@ -27,54 +27,54 @@ artifacts {
     archives javadocJar, sourcesJar
 }
 
-//signing {
-//    sign configurations.archives
-//}
+signing {
+    sign configurations.archives
+}
 
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-//
-//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-//                authentication(userName: ossrhUsername, password: ossrhPassword)
-//            }
-//
-//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-//                authentication(userName: ossrhUsername, password: ossrhPassword)
-//            }
-//
-//            pom.project {
-//                name 'VERAX java sdk'
-//                artifactId 'verax-sdk'
-//                packaging 'jar'
-//                // optionally artifactId can be defined here
-//                description 'VERAX api sdk for members to use the services of VERAX'
-//                url 'https://explorer.baoquan.com'
-//
-////                scm {
-////                    connection 'scm:git:git@github.com:baoquan-hq/java-sdk.git'
-////                    developerConnection 'scm:git:git@github.com:baoquan-hq/java-sdk.git'
-////                    url 'git@github.com:baoquan-hq/java-sdk.git'
-////                }
-//
-//                licenses {
-//                    license {
-//                        name 'The GNU General Public License, Version 3'
-//                        url 'http://www.gnu.org/licenses/gpl-3.0.txt'
-//                    }
-//                }
-//
-//                developers {
-//                    developer {
-//                        id 'xiaxia'
-//                        name 'xiaxia'
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'verax java sdk'
+                artifactId 'verax-sdk'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'verax api sdk for members to use the services of VERAX'
+                url 'https://explorer.baoquan.com'
+
+                scm {
+                    connection 'scm:git:git@github.com:baoquan-hq/verax-sdk.git'
+                    developerConnection 'scm:git:git@github.com:baoquan-hq/verax-sdk.git'
+                    url 'git@github.com:baoquan-hq/verax-sdk.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The GNU General Public License, Version 3'
+                        url 'http://www.gnu.org/licenses/gpl-3.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'xiaxia'
+                        name 'xiaxia'
+                    }
+                }
+            }
+        }
+    }
+}
 dependencies {
     compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.25'
     compile group: 'org.slf4j', name: 'jul-to-slf4j', version: '1.7.25'
