@@ -40,8 +40,8 @@ public class FabricConfig {
     private static final String DEPLOYWAITTIME = "org.hyperledger.fabric.sdk.DeployWaitTime";
     private static final String PROPOSALWAITTIME = "org.hyperledger.fabric.sdk.ProposalWaitTime";
     private static final String EVENTHUBCONNECTIONWAITTIME="org.hyperledger.fabric.sdk.eventhub_connection.wait_time";
-    private static final String INTEGRATIONTESTS_ORG = "org.hyperledger.fabric.sdk.integrationTests.org.";
-    private static final Pattern orgPat = Pattern.compile("^" + Pattern.quote(INTEGRATIONTESTS_ORG) + "([^\\.]+)\\.mspid$");
+    private static final String INTEGRATION_ORG = "org.hyperledger.fabric.sdk.integration.org.";
+    private static final Pattern orgPat = Pattern.compile("^" + Pattern.quote(INTEGRATION_ORG) + "([^\\.]+)\\.mspid$");
 
     private static final String INTEGRATIONTESTSTLS = "org.hyperledger.fabric.sdk.tls";
 
@@ -68,7 +68,7 @@ public class FabricConfig {
                 final String key = (String) x.getKey() ;
                 final String val = (String) x.getValue();
 
-                if (key.startsWith(INTEGRATIONTESTS_ORG)) {
+                if (key.startsWith(INTEGRATION_ORG)) {
                 	
                     Matcher match = orgPat.matcher(key);
 
@@ -84,25 +84,25 @@ public class FabricConfig {
                 final FabricOrg sampleOrg = org.getValue();
                 final String orgName = org.getKey();
 
-                String peerNames = sdkProperties.getProperty(INTEGRATIONTESTS_ORG + orgName + ".peer_locations");
+                String peerNames = sdkProperties.getProperty(INTEGRATION_ORG + orgName + ".peer_locations");
                 String[] ps = peerNames.split("[ \t]*,[ \t]*");
                 for (String peer : ps) {
                     String[] nl = peer.split("[ \t]*@[ \t]*");
                     sampleOrg.addPeerLocation(nl[0], grpcTLSify(nl[1]));
                 }
 
-                final String domainName = sdkProperties.getProperty(INTEGRATIONTESTS_ORG + orgName + ".domname");
+                final String domainName = sdkProperties.getProperty(INTEGRATION_ORG + orgName + ".domname");
 
                 sampleOrg.setDomainName(domainName);
 
-                String ordererNames = sdkProperties.getProperty(INTEGRATIONTESTS_ORG + orgName + ".orderer_locations");
+                String ordererNames = sdkProperties.getProperty(INTEGRATION_ORG + orgName + ".orderer_locations");
                 ps = ordererNames.split("[ \t]*,[ \t]*");
                 for (String peer : ps) {
                     String[] nl = peer.split("[ \t]*@[ \t]*");
                     sampleOrg.addOrdererLocation(nl[0], grpcTLSify(nl[1]));
                 }
 
-                String eventHubNames = sdkProperties.getProperty(INTEGRATIONTESTS_ORG + orgName + ".eventhub_locations");
+                String eventHubNames = sdkProperties.getProperty(INTEGRATION_ORG + orgName + ".eventhub_locations");
                 ps = eventHubNames.split("[ \t]*,[ \t]*");
                 for (String peer : ps) {
                     String[] nl = peer.split("[ \t]*@[ \t]*");
